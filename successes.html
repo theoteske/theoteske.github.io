@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
+
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <title>Downballot Solutions - Successes</title>
+    </head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <div class="nav">
+        <div class="container">
+          <ul>
+            <li><a href="./index.html" style="color:#fff; text-decoration: none;">Home</a></li>
+            <li><a href="./successes.html#win_rate" style="color:#fff; text-decoration: none;">Successes</a></li>
+            <li><a href="./about.html#about" style="color:#fff; text-decoration: none;">About</a></li>
+            <li><a href="./contact.html#form" style="color:#fff; text-decoration: none;">Contact</a></li>
+          </ul>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="container">
+          <h1>downballot solutions</h1>
+          <p>democratizing local politics</p>
+          <a class="btn" href="./successes.html#win_rate" style="color:#fff; text-decoration: none;">Learn About Our Success</a>
+        </div>
+    </div>
+    
+    <div id="win_rate">
+        <h2 class="code">0</h2>
+    </div>
+
+    <script>
+        $({ countNum: $('.code').html() }).animate({ countNum: 95.5 }, {
+            duration: 3000,
+            easing: 'linear',
+            step: function () {
+            $('.code').html(Math.floor(this.countNum) + "% Win Rate");
+        },
+        complete: function () {
+            $('.code').html(this.countNum + "% Win Rate");
+        }
+        });
+    </script>
+
+    <div class="container" id="testimonials">
+        <h3>“I only wish I would have started working with you sooner”</h3>
+        <h4>- MN City Council Candidate</h4>
+        <h3>“Their websites are beautiful and advice sound. I raised more money with Downballot than each of my six previous runs”</h3>
+        <h4>- AZ Ward Council Candidate</h4>
+        <h3>“A precinct-by-precinct strategy breakdown rivaling that of the major parties”</h3>
+        <h4>- TX School Board Candidate</h4>
+        <h3>“A smart and dynamic team. All Downballot consultants have bright futures in politics”</h3>
+        <h4>- MN City Council Candidate</h4>
+        <h3>“Everyone running for City Council across the country would benefit from Downballot’s help”</h3>
+        <h4>- MN City Council Candidate</h4>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+          <p>&copy; Downballot Solutions LLC</p>
+        </div>
+    </div>
+</body>
+</html>

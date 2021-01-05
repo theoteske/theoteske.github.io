@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
+
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <title>Downballot Solutions - Contact</title>
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    <script>
+    function SubForm (){
+        $.ajax({
+            url:'https://api.apispreadsheets.com/data/5750/',
+            type:'post',
+            data:$("#myForm").serializeArray(),
+        });
+
+        location.reload();
+        alert("Thank you! Your response has been recorded. We'll reach out to you shortly.")
+    }
+    </script>
+</head>
+<body>
+    <div class="nav">
+        <div class="container">
+          <ul>
+            <li><a href="./index.html" style="color:#fff; text-decoration: none;">Home</a></li>
+            <li><a href="./successes.html#win_rate" style="color:#fff; text-decoration: none;">Successes</a></li>
+            <li><a href="./about.html#about" style="color:#fff; text-decoration: none;">About</a></li>
+            <li><a href="./contact.html#form" style="color:#fff; text-decoration: none;">Contact</a></li>
+          </ul>
+        </div>
+    </div>
+
+    <div class="header">
+      <div class="container">
+        <h1>downballot solutions</h1>
+        <p>democratizing local politics</p>
+        <a class="btn" href="./successes.html#win_rate" style="color:#fff; text-decoration: none;">Learn About Our Success</a>
+      </div>
+    </div>
+
+    <div class="main" id="form">
+        <div class="container">
+            <h2>Interested in our services? Give us your info below!</h2>
+            <form id="myForm">
+                <label>Name</label>
+                <br>
+                <input name="full_name" />
+                <br>
+                <label>Email</label>
+                <br>
+                <input name="email" />
+                <br>
+                <br>
+                <label>Are you involved with a campaign, or is this a media inquiry?</label>
+                <br>
+                <input type="radio" id="age" name="age" value="Campaign" /> Campaign<br/>
+                <input type="radio" id="age" name="age" value="Media" /> Media<br/>
+                <br>
+                <label>If you're with a campaign, tell us what race you're eyeing: state, precinct, and position.</label>
+                <br>
+                <textarea name="message"></textarea>
+                <br>
+                <br>
+            </form>
+            <button onclick="SubForm()">Submit</button>
+        </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p>&copy; Downballot Solutions LLC</p>
+      </div>
+    </div>
+</body>
+</html>
