@@ -130,7 +130,7 @@ html, body {
     height: 60px;
     line-height: 60px; 
     list-style: none;
-    padding: 0 28px;
+    padding: 0 20px;
     transition: background .5s; 
   }
   
@@ -157,7 +157,7 @@ html, body {
   
   .jumbotron .container {
     position: relative;
-    top: 220px;
+    top: 160px;
   }
   
   .jumbotron h2 {
