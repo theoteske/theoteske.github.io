@@ -41,7 +41,7 @@ html, body {
   .code{
     font-size: 150px;
     text-align: center;
-    background-color:rgba(130, 21, 202, 0.5);
+    background-color:rgba(77, 9, 122, 0.5);
     color: #fff;
   }
 
@@ -73,7 +73,7 @@ html, body {
     line-height: 100px; 
     font-size: 80px;
     margin-top: 0;
-    margin-bottom: 80px;
+    margin-bottom: 33px;
     text-transform: uppercase; 
   }
   
@@ -84,7 +84,7 @@ html, body {
   }
   
   .container h3{
-    font-size: 35px;
+    font-size: 39px;
     text-align: left;
   }
   
@@ -161,6 +161,7 @@ html, body {
   }
   
   .jumbotron h2 {
+    font-size: 35px;
     color: #fff;
     text-align: left;
   }
