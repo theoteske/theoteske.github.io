@@ -5,6 +5,7 @@ html, body {
   
   #win_rate {
     margin-top: 25px;
+    margin-bottom: 2px;
     font-size: 21px;
     text-align: center;
 
@@ -94,6 +95,13 @@ html, body {
     color: rgb(67, 67, 70);
   }
 
+  .container h5{
+    font-size: 40px;
+    text-align: center;
+    color: rgb(77, 9, 122);
+    margin-top: -100px;
+  }
+
   .header p {
     color: #fff;
     font-weight: 500;
@@ -130,7 +138,7 @@ html, body {
     height: 60px;
     line-height: 60px; 
     list-style: none;
-    padding: 0 20px;
+    padding: 0 17px;
     transition: background .5s; 
   }
   

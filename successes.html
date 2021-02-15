@@ -34,17 +34,23 @@
     </div>
 
     <script>
-        $({ countNum: $('.code').html() }).animate({ countNum: 95 }, {
+        $({ countNum: $('.code').html() }).animate({ countNum: 50 }, {
             duration: 3000,
             easing: 'linear',
             step: function () {
-            $('.code').html(Math.floor(this.countNum) + "% Win Rate");
+            $('.code').html(Math.floor(this.countNum) + "% of Clients");
         },
         complete: function () {
-            $('.code').html(this.countNum + "% Win Rate");
+            $('.code').html(this.countNum + "% of Clients");
         }
         });
     </script>
+
+    <div class="container">
+        <h5>Are First Time Candidates</h5>
+        <br>
+        <br>
+    </div>
 
     <div class="container" id="testimonials">
         <h3>“I only wish I would have started working with you sooner”</h3>
