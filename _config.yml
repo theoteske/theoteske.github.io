@@ -1,0 +1,104 @@
+# site settings
+title: Theo Teske | Blog & Portfolio
+email: theo.teske@gmail.com
+description: >-
+  A technical blog and portfolio showcasing my computer science research at UMN, as well 
+  as any projects I've been working on and posts regarding algorithmic problem solving and
+  machine learning.
+baseurl: ""
+url: "https://theoteske.github.io"
+github_username:  theoteske
+linkedin_url: https://www.linkedin.com/in/theo-teske-6b28782a7/
+
+# build settings
+markdown: kramdown          # most feature-rich markdown processor
+theme: minima               # default theme, maybe change later
+plugins:
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-gist
+  - jemoji
+  - jekyll-include-cache
+
+# pagination
+paginate: 5
+paginate_path: "/blog/page:num/"
+
+# markdown processing
+kramdown:
+  input: GFM                # GitHub Flavored Markdown (supports tables, strikethrough, etc)
+  syntax_highlighter: rouge # code syntax highlighting engine
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true    # shows line numbers in code blocks
+      start_line: 1
+  math_engine: mathjax      # enables LaTeX math rendering
+  auto_ids: true            # auto-generates IDs for headers (for linking)
+  toc_levels: 1..6          # which heading levels to include in table of contents
+
+# collections
+collections:
+  projects:
+    output: true            # creates individual pages for each project
+    permalink: /projects/:name/
+  
+# defaults
+defaults:                   # sets default values for front matter
+  - scope:                  # so we don't have to repeat layout: "post" in every post
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Theo Teske"
+      comments: true
+      share: true
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+      author: "Theo Teske"
+
+# SEO
+social:                     # metadata for social media previews and search engines
+  name: Theo Teske
+  links:
+    - https://github.com/theoteske
+    - https://linkedin.com/in/theo-teske-6b28782a7/
+
+# Google Analytics (add tracking ID later)
+# google_analytics: UA-XXXXXXXXX-X
+
+# exclude from processing
+exclude:                    # files to ignore when building
+  - .sass-cache/            # so they aren't copied to _site
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - LICENSE
+  - CNAME
+  - Makefile
+  - scripts/
+
+# Sass
+sass:
+  sass_dir: _sass
+  style: compressed         # minifies CSS for production
+
+# timezone
+timezone: America/Chicago
+
+# URL structure for posts
+permalink: /blog/:year/:month/:title/
