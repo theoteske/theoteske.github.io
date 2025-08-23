@@ -320,3 +320,36 @@ table th {
 .nav-toggle, .nav-toggle-label {
     display: none;
 }
+
+/* line number gutter (javascript-generated) */
+.line-numbers {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 45px;
+    background-color: #f0f0f0;
+    border-right: 1px solid #e0e0e0;
+    padding: 15px 5px;
+    text-align: right;
+    user-select: none;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #999;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.line-numbers span {
+    display: block;
+    height: 1.5em;
+    line-height: 1.5;
+}
+
+/* ensure code blocks with line numbers have proper padding */
+.code-block-wrapper pre {
+    padding-left: 55px !important;
+    position: relative;
+}
