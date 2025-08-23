@@ -1,0 +1,58 @@
+{% capture tocWorkspace %}
+    {% comment %}
+        Generate table of contents from content headers
+    {% endcomment %}
+    
+    {% assign tocHTML = '' %}
+    {% assign tocLevel = 1 %}
+    {% assign tocSection = 1 %}
+    {% assign tocWorkspace = include.html | split: '<h' %}
+    
+    {% for ws in tocWorkspace %}
+        {% if ws contains 'id="' %}
+            {% assign tocMatches = ws | split: 'id="' %}
+            {% assign tocID = tocMatches[1] | split: '"' | first %}
+            {% assign tocTitle = ws | split: '</h' | first | split: '>' | last %}
+            {% assign tocNumber = ws | slice: 0, 1 %}
+            
+            {% if tocNumber == '2' %}
+                {% if tocLevel > 1 %}
+                    {% for i in (2..tocLevel) %}
+                        {% assign tocHTML = tocHTML | append: '</ul>' %}
+                    {% endfor %}
+                {% endif %}
+                {% assign tocLevel = 1 %}
+                {% assign tocHTML = tocHTML | append: '<li><a href="#' | append: tocID | append: '">' | append: tocTitle | append: '</a>' %}
+            {% elsif tocNumber == '3' %}
+                {% if tocLevel == 1 %}
+                    {% assign tocHTML = tocHTML | append: '<ul>' %}
+                    {% assign tocLevel = 2 %}
+                {% endif %}
+                {% assign tocHTML = tocHTML | append: '<li><a href="#' | append: tocID | append: '">' | append: tocTitle | append: '</a></li>' %}
+            {% elsif tocNumber == '4' %}
+                {% if tocLevel == 1 %}
+                    {% assign tocHTML = tocHTML | append: '<ul><ul>' %}
+                    {% assign tocLevel = 3 %}
+                {% elsif tocLevel == 2 %}
+                    {% assign tocHTML = tocHTML | append: '<ul>' %}
+                    {% assign tocLevel = 3 %}
+                {% endif %}
+                {% assign tocHTML = tocHTML | append: '<li><a href="#' | append: tocID | append: '">' | append: tocTitle | append: '</a></li>' %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    
+    {% if tocLevel > 1 %}
+        {% for i in (2..tocLevel) %}
+            {% assign tocHTML = tocHTML | append: '</ul>' %}
+        {% endfor %}
+    {% endif %}
+    
+    {% assign tocHTML = tocHTML | append: '</li>' %}
+{% endcapture %}
+
+{% if tocHTML != '' %}
+<ul class="toc">
+    {{ tocHTML }}
+</ul>
+{% endif %}
