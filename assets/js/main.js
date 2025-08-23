@@ -1,28 +1,41 @@
-// add copy buttons to code blocks
 document.addEventListener('DOMContentLoaded', function() {
-  // select all code blocks
-  const codeBlocks = document.querySelectorAll('pre');
+  // add copy buttons to code blocks
+  const codeBlocks = document.querySelectorAll('div.highlight');
   
-  codeBlocks.forEach(function(codeBlock) {
-    if (codeBlock.parentElement.tagName === 'CODE') return; // skip if inline code
+  codeBlocks.forEach(function(highlightBlock) {
+    // get the pre element
+    const pre = highlightBlock.querySelector('pre');
+    if (!pre) return;
+    
+    // check if already wrapped
+    if (highlightBlock.parentElement.classList.contains('code-block-wrapper')) return;
     
     // create wrapper div
     const wrapper = document.createElement('div');
     wrapper.className = 'code-block-wrapper';
-    codeBlock.parentNode.insertBefore(wrapper, codeBlock);
-    wrapper.appendChild(codeBlock);
+    highlightBlock.parentNode.insertBefore(wrapper, highlightBlock);
+    wrapper.appendChild(highlightBlock);
     
     // create header with copy button
     const header = document.createElement('div');
     header.className = 'code-header';
     
-    // detect language from the highlight class
-    const highlightDiv = codeBlock.querySelector('.highlight');
+    // detect language
     let language = 'code';
-    if (codeBlock.className.match(/language-(\w+)/)) {
-      language = codeBlock.className.match(/language-(\w+)/)[1];
-    } else if (highlightDiv && highlightDiv.className.match(/language-(\w+)/)) {
-      language = highlightDiv.className.match(/language-(\w+)/)[1];
+    const codeElement = pre.querySelector('code');
+    if (codeElement) {
+      const classes = codeElement.className.split(' ');
+      for (let className of classes) {
+        if (className.startsWith('language-')) {
+          language = className.replace('language-', '');
+          break;
+        }
+      }
+    }
+
+    // also check data-lang attribute
+    if (pre.getAttribute('data-lang')) {
+      language = pre.getAttribute('data-lang');
     }
     
     const languageLabel = document.createElement('span');
@@ -35,12 +48,75 @@ document.addEventListener('DOMContentLoaded', function() {
     
     header.appendChild(languageLabel);
     header.appendChild(copyButton);
-    wrapper.insertBefore(header, codeBlock);
+    wrapper.insertBefore(header, highlightBlock);
     
     // copy functionality
     copyButton.addEventListener('click', function() {
-      const code = codeBlock.textContent;
-      navigator.clipboard.writeText(code).then(function() {
+      // get the actual code content, excluding line numbers
+      const code = pre.querySelector('code');
+      let textToCopy = '';
+      
+      if (code) {
+        // if there's a code element, get its text
+        textToCopy = code.textContent;
+      } else {
+        // otherwise get all text except line numbers
+        const lines = pre.textContent.split('\n');
+        textToCopy = lines.map(line => {
+          // remove line numbers if they exist (usually first few characters)
+          return line.replace(/^\s*\d+\s*/, '');
+        }).join('\n');
+      }
+      
+      navigator.clipboard.writeText(textToCopy).then(function() {
+        copyButton.textContent = 'Copied!';
+        copyButton.classList.add('copied');
+        
+        setTimeout(function() {
+          copyButton.textContent = 'Copy';
+          copyButton.classList.remove('copied');
+        }, 2000);
+      }).catch(function(err) {
+        console.error('Failed to copy: ', err);
+        copyButton.textContent = 'Failed';
+      });
+    });
+  });
+  
+  // handle standalone pre elements without highlight div
+  const standalonePres = document.querySelectorAll('pre:not(.highlight pre)');
+  
+  standalonePres.forEach(function(pre) {
+    // skip if already wrapped
+    if (pre.parentElement.classList.contains('code-block-wrapper')) return;
+    
+    // create wrapper div
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-block-wrapper';
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+    
+    // create header with copy button
+    const header = document.createElement('div');
+    header.className = 'code-header';
+    
+    const languageLabel = document.createElement('span');
+    languageLabel.className = 'code-language';
+    languageLabel.textContent = 'code';
+    
+    const copyButton = document.createElement('button');
+    copyButton.className = 'copy-button';
+    copyButton.textContent = 'Copy';
+    
+    header.appendChild(languageLabel);
+    header.appendChild(copyButton);
+    wrapper.insertBefore(header, pre);
+    
+    // copy functionality
+    copyButton.addEventListener('click', function() {
+      const textToCopy = pre.textContent;
+      
+      navigator.clipboard.writeText(textToCopy).then(function() {
         copyButton.textContent = 'Copied!';
         copyButton.classList.add('copied');
         
@@ -76,8 +152,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const anchor = document.createElement('a');
       anchor.className = 'header-anchor';
       anchor.href = '#' + header.id;
-      anchor.innerHTML = '<i class="fas fa-link"></i>';
+      anchor.innerHTML = ' 🔗';
       anchor.setAttribute('aria-label', 'Permalink');
+      anchor.style.fontSize = '0.8em';
+      anchor.style.opacity = '0.5';
+      anchor.style.marginLeft = '0.5em';
       header.appendChild(anchor);
     }
   });

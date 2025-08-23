@@ -1,13 +1,260 @@
-/* temporary main.css that imports minima defaults and custom styles */
-@import url("https://cdn.jsdelivr.net/npm/minima@2.5.1/assets/main.css");
-
-/* basic overrides for immediate use */
+/* base typography and layout */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
 }
 
 .wrapper {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* headers */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.25em; }
+
+/* links */
+a {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* code block container fix */
+.code-block-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* hide the inner highlight div's redundant styling */
+.code-block-wrapper .highlight {
+    margin: 0;
+    background: none;
+}
+
+/* style the pre element directly */
+.code-block-wrapper pre {
+    margin: 0;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+}
+
+/* ensure proper code block styling without double boxes */
+pre {
+    background-color: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 15px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+/* remove default pre styling when inside our wrapper */
+.code-block-wrapper pre {
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    margin-bottom: 0;
+}
+
+/* code header styling */
+.code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e8e8e8;
+    padding: 8px 15px;
+    border: 1px solid #e0e0e0;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+}
+
+.code-language {
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.copy-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+}
+
+.copy-button:hover {
+    background-color: #2980b9;
+}
+
+.copy-button.copied {
+    background-color: #27ae60;
+}
+
+/* code and syntax */
+code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+/* inline code */
+p code, li code {
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #e74c3c;
+}
+
+/* line numbers fix */
+.highlight pre {
+    padding-left: 50px;
+    position: relative;
+}
+
+.highlight .lineno {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    padding: 15px 5px;
+    background-color: #f0f0f0;
+    border-right: 1px solid #e0e0e0;
+    color: #999;
+    text-align: right;
+    user-select: none;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+/* basic page layout */
+.page-content {
+    padding: 40px 0;
+    min-height: calc(100vh - 200px);
+}
+
+/* post styles */
+.post-header {
+    margin-bottom: 30px;
+}
+
+.post-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.post-meta {
+    color: #666;
+    font-size: 14px;
+}
+
+.post-content {
+    max-width: 100%;
+}
+
+.post-content p {
+    margin-bottom: 1em;
+}
+
+/* lists */
+ul, ol {
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+/* blockquotes */
+blockquote {
+    border-left: 4px solid #3498db;
+    padding-left: 1em;
+    margin: 1em 0;
+    color: #666;
+    font-style: italic;
+}
+
+/* tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+/* navigation placeholder */
+.site-header {
+    background-color: #2c3e50;
+    padding: 20px 0;
+    margin-bottom: 30px;
+}
+
+.site-header a {
+    color: white;
+}
+
+.site-header .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-menu a {
+    color: white;
+}
+
+/* footer placeholder */
+.site-footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 30px 0;
+    margin-top: 60px;
+}
+
+.site-footer a {
+    color: white;
+}
+
+/* hide nav toggle on desktop */
+.nav-toggle, .nav-toggle-label {
+    display: none;
 }
