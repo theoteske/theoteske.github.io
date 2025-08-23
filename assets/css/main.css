@@ -119,6 +119,13 @@ code {
     font-size: 0.9em;
 }
 
+/* ensure consistent line height in code blocks */
+pre code {
+    display: block;
+    line-height: 1.45;
+    font-size: 14px;
+}
+
 /* inline code */
 p code, li code {
     background-color: #f0f0f0;
@@ -127,26 +134,81 @@ p code, li code {
     color: #e74c3c;
 }
 
-/* line numbers fix */
-.highlight pre {
-    padding-left: 50px;
+/* line numbers */
+.highlight {
     position: relative;
 }
 
-.highlight .lineno {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    padding: 15px 5px;
+/* table-based line numbers */
+.highlight table.rouge-table {
+    margin: 0;
+    border: none;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.highlight table.rouge-table td {
+    padding: 0;
+    border: none;
+    vertical-align: top;
+}
+
+.highlight table.rouge-table td.rouge-gutter {
+    width: 50px;
     background-color: #f0f0f0;
     border-right: 1px solid #e0e0e0;
+    text-align: right;
+    padding-right: 10px;
+    user-select: none;
+}
+
+.highlight table.rouge-table td.rouge-code {
+    padding-left: 15px;
+    width: calc(100% - 50px);
+}
+
+.highlight table.rouge-table pre {
+    margin: 0;
+    padding: 15px 0;
+    background: none;
+    border: none;
+}
+
+.highlight table.rouge-table .rouge-gutter pre {
+    padding: 15px 10px 15px 0;
     color: #999;
+}
+
+/* inline line numbers (fallback) */
+.highlight pre .lineno {
+    color: #999;
+    display: inline-block;
+    padding: 0 10px 0 0;
     text-align: right;
     user-select: none;
-    font-size: 12px;
-    line-height: 1.45;
+    min-width: 40px;
+    margin-right: 10px;
+}
+
+/* ensure consistent formatting */
+.highlight pre,
+.highlight code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* remove conflicting styles */
+.highlight pre {
+    padding: 15px;
+}
+
+.code-block-wrapper .highlight pre {
+    padding: 15px;
+}
+
+.code-block-wrapper .highlight table.rouge-table pre {
+    padding: 15px 0;
 }
 
 /* basic page layout */

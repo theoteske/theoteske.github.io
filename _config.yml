@@ -35,8 +35,7 @@ kramdown:
     span:
       line_numbers: false
     block:
-      line_numbers: true    # shows line numbers in code blocks
-      start_line: 1
+      line_numbers: false   # disabled to use javascript instead
   math_engine: mathjax      # enables LaTeX math rendering
   auto_ids: true            # auto-generates IDs for headers (for linking)
   toc_levels: 1..6          # which heading levels to include in table of contents

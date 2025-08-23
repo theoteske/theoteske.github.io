@@ -1,5 +1,6 @@
+// add line numbers and copy buttons to code blocks
 document.addEventListener('DOMContentLoaded', function() {
-  // add copy buttons to code blocks
+  // select all code blocks
   const codeBlocks = document.querySelectorAll('div.highlight');
   
   codeBlocks.forEach(function(highlightBlock) {
@@ -15,6 +16,30 @@ document.addEventListener('DOMContentLoaded', function() {
     wrapper.className = 'code-block-wrapper';
     highlightBlock.parentNode.insertBefore(wrapper, highlightBlock);
     wrapper.appendChild(highlightBlock);
+    
+    // add line numbers
+    const code = pre.querySelector('code') || pre;
+    const lines = code.textContent.split('\n');
+    
+    // remove empty last line if it exists
+    if (lines[lines.length - 1] === '') {
+      lines.pop();
+    }
+    
+    // create line numbers container
+    const lineNumbersDiv = document.createElement('div');
+    lineNumbersDiv.className = 'line-numbers';
+    
+    // add a span for each line
+    for (let i = 1; i <= lines.length; i++) {
+      const lineSpan = document.createElement('span');
+      lineSpan.textContent = i;
+      lineNumbersDiv.appendChild(lineSpan);
+    }
+    
+    // insert line numbers
+    pre.style.position = 'relative';
+    pre.appendChild(lineNumbersDiv);
     
     // create header with copy button
     const header = document.createElement('div');
@@ -52,20 +77,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // copy functionality
     copyButton.addEventListener('click', function() {
-      // get the actual code content, excluding line numbers
+      // get the actual code content
       const code = pre.querySelector('code');
       let textToCopy = '';
       
       if (code) {
-        // if there's a code element, get its text
         textToCopy = code.textContent;
       } else {
-        // otherwise get all text except line numbers
-        const lines = pre.textContent.split('\n');
-        textToCopy = lines.map(line => {
-          // remove line numbers if they exist (usually first few characters)
-          return line.replace(/^\s*\d+\s*/, '');
-        }).join('\n');
+        textToCopy = pre.textContent;
       }
       
       navigator.clipboard.writeText(textToCopy).then(function() {
@@ -83,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // handle standalone pre elements without highlight div
-  const standalonePres = document.querySelectorAll('pre:not(.highlight pre)');
+  // also handle standalone pre elements without highlight div
+  const standalonePres = document.querySelectorAll('pre:not(.highlight pre):not(.code-block-wrapper pre)');
   
   standalonePres.forEach(function(pre) {
     // skip if already wrapped
@@ -95,6 +114,30 @@ document.addEventListener('DOMContentLoaded', function() {
     wrapper.className = 'code-block-wrapper';
     pre.parentNode.insertBefore(wrapper, pre);
     wrapper.appendChild(pre);
+    
+    // add line numbers
+    const code = pre.querySelector('code') || pre;
+    const lines = code.textContent.split('\n');
+    
+    // remove empty last line if it exists
+    if (lines[lines.length - 1] === '') {
+      lines.pop();
+    }
+    
+    // create line numbers container
+    const lineNumbersDiv = document.createElement('div');
+    lineNumbersDiv.className = 'line-numbers';
+    
+    // add a span for each line
+    for (let i = 1; i <= lines.length; i++) {
+      const lineSpan = document.createElement('span');
+      lineSpan.textContent = i;
+      lineNumbersDiv.appendChild(lineSpan);
+    }
+    
+    // insert line numbers
+    pre.style.position = 'relative';
+    pre.appendChild(lineNumbersDiv);
     
     // create header with copy button
     const header = document.createElement('div');
