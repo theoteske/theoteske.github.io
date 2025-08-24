@@ -3,13 +3,9 @@ layout: home
 title: Home
 ---
 
-# Hello and Welcome!
+## Hello and Welcome!
 
 My name is Theo. I'm a developer and especially interested in algorithmic problem solving and machine learning. I share recent projects I have been working on and posts on topics that interest me and that I think may be interesting to others.
-
-## Recent Posts
-
-<!-- This is automatically populated by Jekyll -->
 
 ## Featured Projects
 

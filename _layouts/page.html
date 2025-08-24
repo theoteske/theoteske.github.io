@@ -5,7 +5,7 @@ layout: default
 <article class="page">
   <header class="page-header">
     <h1 class="page-title">{{ page.title | escape }}</h1>
-    {% if page.description %}
+    {% if page.description and page.description != "" %}
     <p class="page-description">{{ page.description }}</p>
     {% endif %}
   </header>

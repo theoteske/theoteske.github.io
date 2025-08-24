@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-# About Me
+## About Me
 
 Hello! My name is Theo Teske. I am currently a student at the University of Minnesota working towards an M.S. in Computer Science. My research interests are in distributed systems, machine learning, and algorithm design and analysis.
 
@@ -14,7 +14,7 @@ Hello! My name is Theo Teske. I am currently a student at the University of Minn
 
 ## Technical Skills
 
-**Programming Languages:** C/C++, Python, JavaScript
+**Programming Languages:** C/C++, Python, JavaScript \
 **Frameworks & Tools:** TensorFlow, React, Docker, Git
 
 ## Publications & Projects
