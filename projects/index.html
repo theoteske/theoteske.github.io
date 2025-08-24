@@ -1,0 +1,232 @@
+---
+layout: page
+title: Projects
+permalink: /projects/
+description: My portfolio of computer science projects and research
+---
+
+<div class="projects-page">
+  <!-- filter buttons -->
+  <div class="project-filters">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="research">Research</button>
+    <button class="filter-btn" data-filter="web">Web Development</button>
+    <button class="filter-btn" data-filter="ml">Machine Learning</button>
+    <button class="filter-btn" data-filter="tools">Tools & Libraries</button>
+  </div>
+
+  <!-- projects grid -->
+  <div class="projects-grid">
+    {% for project in site.projects %}
+    <div class="project-card" data-category="{{ project.category | default: 'all' }}">
+      {% if project.featured_image %}
+      <div class="project-thumbnail">
+        <img src="{{ project.featured_image | relative_url }}" alt="{{ project.title }}">
+      </div>
+      {% endif %}
+      
+      <div class="project-info">
+        <h3>{{ project.title }}</h3>
+        
+        <p class="project-description">{{ project.description }}</p>
+        
+        <div class="project-tech-stack">
+          {% if project.tech %}
+            {% for tech in project.tech %}
+              <span class="tech-badge">{{ tech }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+        
+        <div class="project-actions">
+          <a href="{{ project.url | relative_url }}" class="view-project">
+            Learn more →
+          </a>
+          
+          <div class="project-quick-links">
+            {% if project.github %}
+            <a href="{{ project.github }}" target="_blank" rel="noopener" title="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            {% endif %}
+            
+            {% if project.demo %}
+            <a href="{{ project.demo }}" target="_blank" rel="noopener" title="Live Demo">
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 0.75rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.5rem;
+  background: var(--bg-primary);
+  border: 2px solid var(--border);
+  border-radius: 2rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.project-card.hidden {
+  display: none;
+}
+
+.project-thumbnail {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.project-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-thumbnail img {
+  transform: scale(1.05);
+}
+
+.project-info {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-info h3 {
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.project-description {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-badge {
+  padding: 0.25rem 0.75rem;
+  background: var(--bg-tertiary);
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.project-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.view-project {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.view-project:hover {
+  color: var(--primary-dark);
+}
+
+.project-quick-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-quick-links a {
+  color: var(--text-tertiary);
+  font-size: 1.25rem;
+  transition: color 0.2s ease;
+}
+
+.project-quick-links a:hover {
+  color: var(--primary);
+}
+</style>
+
+<script>
+// project filtering
+document.addEventListener('DOMContentLoaded', function() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+  
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // update active button
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      // filter projects
+      const filter = btn.dataset.filter;
+      projectCards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+});
+</script>

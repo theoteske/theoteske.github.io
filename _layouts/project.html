@@ -1,0 +1,186 @@
+---
+layout: default
+---
+
+<article class="project">
+  <header class="project-header">
+    <h1 class="project-title">{{ page.title }}</h1>
+    
+    <div class="project-meta">
+      {% if page.date %}
+      <span class="project-date">
+        <i class="far fa-calendar-alt"></i>
+        {{ page.date | date: "%B %Y" }}
+      </span>
+      {% endif %}
+      
+      {% if page.tech %}
+      <span class="project-tech">
+        <i class="fas fa-code"></i>
+        {% for tech in page.tech %}
+          <span class="tech-tag">{{ tech }}</span>
+        {% endfor %}
+      </span>
+      {% endif %}
+    </div>
+    
+    <div class="project-links">
+      {% if page.github %}
+      <a href="{{ page.github }}" class="project-link github" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+        View on GitHub
+      </a>
+      {% endif %}
+      
+      {% if page.demo %}
+      <a href="{{ page.demo }}" class="project-link demo" target="_blank" rel="noopener">
+        <i class="fas fa-external-link-alt"></i>
+        Live Demo
+      </a>
+      {% endif %}
+      
+      {% if page.paper %}
+      <a href="{{ page.paper }}" class="project-link paper" target="_blank" rel="noopener">
+        <i class="fas fa-file-pdf"></i>
+        Research Paper
+      </a>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if page.featured_image %}
+  <div class="project-image">
+    <img src="{{ page.featured_image | relative_url }}" alt="{{ page.title }}">
+  </div>
+  {% endif %}
+
+  <div class="project-content">
+    {{ content }}
+  </div>
+
+  <div class="project-footer">
+    <a href="{{ "/projects" | relative_url }}" class="back-to-projects">
+      <i class="fas fa-arrow-left"></i>
+      Back to all projects
+    </a>
+  </div>
+</article>
+
+<style>
+.project-header {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.project-title {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-tertiary);
+  font-size: 0.875rem;
+}
+
+.tech-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--bg-tertiary);
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.project-link.github {
+  background: #24292e;
+  color: white;
+}
+
+.project-link.github:hover {
+  background: #1a1e22;
+  transform: translateY(-2px);
+}
+
+.project-link.demo {
+  background: var(--primary);
+  color: white;
+}
+
+.project-link.demo:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.project-link.paper {
+  background: var(--secondary);
+  color: white;
+}
+
+.project-link.paper:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.project-image {
+  margin: 2rem 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.project-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.project-content h2 {
+  margin-top: 2rem;
+  color: var(--text-primary);
+}
+
+.back-to-projects {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 0.5rem;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.back-to-projects:hover {
+  background: var(--bg-tertiary);
+  transform: translateX(-4px);
+}
+</style>
