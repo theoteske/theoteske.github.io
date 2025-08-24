@@ -1,10 +1,10 @@
 :root {
-  /* colors for light Mode */
-  --primary: #2563eb;      /* bright blue */
-  --primary-dark: #1e40af; /* darker blue */
-  --secondary: #10b981;    /* green accent */
-  --danger: #ef4444;       /* red */
-  --warning: #f59e0b;      /* orange */
+  /* colors for light mode */
+  --primary: #2563eb;        /* bright blue */
+  --primary-dark: #1e40af;   /* darker blue */
+  --secondary: #10b981;      /* green accent */
+  --danger: #ef4444;         /* red */
+  --warning: #f59e0b;        /* orange */
   
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;
@@ -18,15 +18,15 @@
   --border-dark: #d1d5db;
   
   /* code block colors for light mode */
-  --code-bg: #282c34;         /* dark background for better contrast */
-  --code-text: #abb2bf;       /* light gray text */
+  --code-bg: #282c34;        /* dark background for better contrast */
+  --code-text: #a19e9e;      /* brighter text for readability */
   --code-inline-bg: #f3f4f6;
   --code-inline-text: #d63384;
   
-  /* footer specific */
-  --footer-bg: #1f2937;
-  --footer-text: #d1d5db;
-  --footer-link: #9ca3af;
+  /* footer for both modes */
+  --footer-bg: #0f172a;
+  --footer-text: #e2e8f0;
+  --footer-link: #cbd5e1;
   
   /* typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -56,9 +56,9 @@
   --primary-dark: #3b82f6;
   --secondary: #34d399;
   
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
+  --bg-primary: #0f172a;      /* dark background */
+  --bg-secondary: #1e293b;    /* slightly lighter */
+  --bg-tertiary: #334155;     /* even lighter */
   
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
@@ -67,13 +67,13 @@
   --border: #334155;
   --border-dark: #475569;
   
-  /* code colors stay the same for dark mode */
+  /* code colors for dark mode */
   --code-bg: #1e293b;
-  --code-text: #e2e8f0;
+  --code-text: #f1f5f9;      /* much brighter text */
   --code-inline-bg: #334155;
   --code-inline-text: #f472b6;
   
-  /* footer in dark mode */
+  /* footer stays the same in dark mode */
   --footer-bg: #0f172a;
   --footer-text: #e2e8f0;
   --footer-link: #cbd5e1;
@@ -88,6 +88,7 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg-primary);
 }
 
 body {
@@ -96,11 +97,12 @@ body {
   line-height: 1.7;
   color: var(--text-primary);
   background-color: var(--bg-primary);
-  transition: var(--transition);
+  transition: background-color 0.3s ease, color 0.3s ease;
   font-feature-settings: "kern" 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 /* typography */
@@ -172,7 +174,8 @@ a:hover {
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
-  background-color: rgba(var(--bg-primary), 0.8);
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
 }
 
 .site-header .wrapper {
@@ -406,8 +409,8 @@ pre {
 
 /* inline code */
 p code, li code {
-  background: var(--bg-tertiary);
-  color: var(--primary);
+  background: var(--code-inline-bg);
+  color: var(--code-inline-text);
   padding: 0.125rem 0.375rem;
   border-radius: 0.25rem;
   font-family: var(--font-mono);
@@ -417,7 +420,7 @@ p code, li code {
 
 /* footer */
 .site-footer {
-  background: var(--bg-secondary);
+  background: var(--footer-bg);
   border-top: 1px solid var(--border);
   padding: var(--space-2xl) 0;
   margin-top: var(--space-2xl);
@@ -431,6 +434,11 @@ p code, li code {
   gap: var(--space-xl);
 }
 
+.footer-col p {
+  color: var(--footer-text);
+  margin: 0;
+}
+
 .social-links {
   display: flex;
   gap: var(--space-md);
@@ -442,9 +450,9 @@ p code, li code {
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: var(--bg-tertiary);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  color: var(--text-secondary);
+  color: var(--footer-link);
   transition: var(--transition);
 }
 
