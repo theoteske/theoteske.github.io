@@ -50,35 +50,6 @@
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
-/* dark mode variables */
-[data-theme="dark"] {
-  --primary: #60a5fa;
-  --primary-dark: #3b82f6;
-  --secondary: #34d399;
-  
-  --bg-primary: #0f172a;      /* dark background */
-  --bg-secondary: #1e293b;    /* slightly lighter */
-  --bg-tertiary: #334155;     /* even lighter */
-  
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --text-tertiary: #94a3b8;
-  
-  --border: #334155;
-  --border-dark: #475569;
-  
-  /* code colors for dark mode */
-  --code-bg: #1e293b;
-  --code-text: #f1f5f9;      /* much brighter text */
-  --code-inline-bg: #334155;
-  --code-inline-text: #f472b6;
-  
-  /* footer stays the same in dark mode */
-  --footer-bg: #0f172a;
-  --footer-text: #e2e8f0;
-  --footer-link: #cbd5e1;
-}
-
 /* base styles */
 * {
   margin: 0;
@@ -88,7 +59,6 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--bg-primary);
 }
 
 body {
@@ -97,12 +67,11 @@ body {
   line-height: 1.7;
   color: var(--text-primary);
   background-color: var(--bg-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: var(--transition);
   font-feature-settings: "kern" 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
 }
 
 /* typography */
@@ -174,8 +143,6 @@ a:hover {
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
-  background-color: var(--bg-primary);
-  transition: background-color 0.3s ease;
 }
 
 .site-header .wrapper {
@@ -223,23 +190,6 @@ a:hover {
 
 .nav-link:hover::after {
   width: 100%;
-}
-
-/* dark mode toggle button */
-.theme-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: var(--space-sm);
-  color: var(--text-secondary);
-  font-size: 1.25rem;
-  transition: var(--transition);
-  border-radius: 0.5rem;
-}
-
-.theme-toggle:hover {
-  background: var(--bg-secondary);
-  color: var(--primary);
 }
 
 /* main content */
