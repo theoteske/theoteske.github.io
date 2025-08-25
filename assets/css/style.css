@@ -19,11 +19,11 @@
   
   /* code block colors for light mode */
   --code-bg: #282c34;        /* dark background for better contrast */
-  --code-text: #a19e9e;      /* brighter text for readability */
+  --code-text: #8d8888;      /* brighter text for readability */
   --code-inline-bg: #f3f4f6;
   --code-inline-text: #d63384;
   
-  /* footer for both modes */
+  /* footer */
   --footer-bg: #0f172a;
   --footer-text: #e2e8f0;
   --footer-link: #cbd5e1;
