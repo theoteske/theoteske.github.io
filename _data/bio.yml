@@ -1,0 +1,16 @@
+name: "Theo Teske"
+title: "M.S. Computer Science Student"
+university: "University of Minnesota"
+description: "Researching distributed systems and machine learning. Building scalable solutions and exploring algorithmic challenges."
+resume: "/assets/files/resume.pdf"
+email: "theo.teske@gmail.com"
+github: "theoteske"
+linkedin: "theo-teske-6b28782a7"
+research_interests:
+  - "Distributed Systems"
+  - "Machine Learning"
+  - "Algorithm Design"
+skills:
+  languages: ["Python", "C/C++", "JavaScript", "Java"]
+  frameworks: ["TensorFlow", "PyTorch", "React", "Node.js"]
+  tools: ["Docker", "Kubernetes", "Git", "AWS", "GCP"]

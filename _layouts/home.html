@@ -3,70 +3,70 @@ layout: default
 ---
 
 <div class="home">
+  <!-- hero section -->
   <section class="hero">
-    <h1>{{ page.title | default: "Welcome" }}</h1>
     <div class="hero-content">
-      {{ content }}
+      <h1 class="hero-title">{{ site.data.bio.name | default: "Theo Teske" }}</h1>
+      <p class="hero-subtitle">{{ site.data.bio.title | default: "Computer Science Graduate Student" }}</p>
+      <p class="hero-description">{{ site.data.bio.description | default: page.description }}</p>
+      <div class="hero-links">
+        <a href="/about" class="btn btn-primary">About Me</a>
+        <a href="/projects" class="btn btn-outline">View Projects</a>
+        <a href="{{ site.data.bio.resume }}" class="btn btn-outline" target="_blank">
+          <i class="fas fa-file-pdf"></i> Resume
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="recent-posts">
-    <h2>Recent Blog Posts</h2>
-    <div class="post-list">
-      {% for post in site.posts limit:5 %}
-      <article class="post-preview">
-        <h3>
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h3>
-        <div class="post-meta">
-          <time datetime="{{ post.date | date_to_xmlschema }}">
-            {{ post.date | date: "%B %-d, %Y" }}
-          </time>
-          {% if post.categories %}
-          <span class="post-categories">
-            {% for category in post.categories limit:2 %}
-              {{ category }}{% unless forloop.last %}, {% endunless %}
-            {% endfor %}
-          </span>
-          {% endif %}
-        </div>
-        <div class="post-excerpt">
-          {{ post.excerpt | strip_html | truncate: 200 }}
-        </div>
-        <a href="{{ post.url | relative_url }}" class="read-more">Read more →</a>
-      </article>
-      {% endfor %}
-    </div>
-    
-    {% if site.posts.size > 5 %}
-    <div class="all-posts-link">
-      <a href="{{ "/blog" | relative_url }}" class="button">View All Posts</a>
-    </div>
-    {% endif %}
-  </section>
-
-  {% if site.projects %}
+  <!-- featured projects section -->
+  {% assign featured_projects = site.projects | where: "featured", true | limit: 3 %}
+  {% if featured_projects.size > 0 %}
   <section class="featured-projects">
     <h2>Featured Projects</h2>
     <div class="project-grid">
-      {% for project in site.projects limit:3 %}
+      {% for project in featured_projects %}
       <div class="project-card">
-        <h3>
-          <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-        </h3>
-        <p>{{ project.description | truncate: 150 }}</p>
-        <div class="project-tags">
-          {% for tag in project.tags %}
-          <span class="tag">{{ tag }}</span>
-          {% endfor %}
+        {% if project.image %}
+        <div class="project-image">
+          <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+        </div>
+        {% endif %}
+        <div class="project-content">
+          <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+          <p>{{ project.description }}</p>
+          <div class="project-tech">
+            {% for tech in project.tech %}
+            <span class="tech-tag">{{ tech }}</span>
+            {% endfor %}
+          </div>
         </div>
       </div>
       {% endfor %}
     </div>
-    
-    <div class="all-projects-link">
-      <a href="{{ "/projects" | relative_url }}" class="button">View All Projects</a>
+    <div class="section-footer">
+      <a href="/projects" class="view-all">View All Projects →</a>
     </div>
   </section>
   {% endif %}
+
+  <!-- recent posts section -->
+  <section class="recent-posts">
+    <h2>Recent Posts</h2>
+    <div class="post-list">
+      {% for post in site.posts limit:3 %}
+      <article class="post-item">
+        <time class="post-date">{{ post.date | date: "%B %d, %Y" }}</time>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+        <a href="{{ post.url | relative_url }}" class="read-more">Read more →</a>
+      </article>
+      {% endfor %}
+    </div>
+    {% if site.posts.size > 3 %}
+    <div class="section-footer">
+      <a href="/blog" class="view-all">View All Posts →</a>
+    </div>
+    {% endif %}
+  </section>
 </div>

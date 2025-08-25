@@ -1,6 +1,11 @@
 # tells bundler where to download gems from
 source "https://rubygems.org"
 
+# ruby 3.4 compatibility
+gem "csv", "~> 3.2"
+gem "base64", "~> 0.2.0"
+gem "webrick"
+
 # GitHub Pages gem including jekyll and all plugins that Github Pages supports
 gem "github-pages", group: :jekyll_plugins
 
@@ -14,9 +19,6 @@ group :jekyll_plugins do
   gem "jekyll-include-cache" # caches frequently used includes files for faster builds
   gem "jemoji"               # converts :emoji: notation to actual emoji (like GitHub)
 end
-
-# ruby 3.0+ removed WEBrick from standard library, but Jekyll needs it for local dev
-gem "webrick"
 
 # dev tools
 group :development do
