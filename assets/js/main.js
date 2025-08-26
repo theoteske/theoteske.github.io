@@ -1,15 +1,30 @@
-// add line numbers and copy buttons to code blocks
 document.addEventListener('DOMContentLoaded', function() {
-  // select all code blocks
+  // process all code blocks
   const codeBlocks = document.querySelectorAll('div.highlight');
   
   codeBlocks.forEach(function(highlightBlock) {
+    // check if it's already been processed
+    if (highlightBlock.parentElement && highlightBlock.parentElement.classList.contains('code-block-wrapper')) {
+      return;
+    }
+    
+    // check if it has a rouge table
+    const rougeTable = highlightBlock.querySelector('table.rouge-table');
+    if (rougeTable) {
+      // jekyll is already handling line numbers, just add wrapper
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-block-wrapper';
+      highlightBlock.parentNode.insertBefore(wrapper, highlightBlock);
+      wrapper.appendChild(highlightBlock);
+      
+      // add header with copy button
+      addCodeHeader(wrapper, highlightBlock);
+      return;
+    }
+    
     // get the pre element
     const pre = highlightBlock.querySelector('pre');
     if (!pre) return;
-    
-    // check if already wrapped
-    if (highlightBlock.parentElement.classList.contains('code-block-wrapper')) return;
     
     // create wrapper div
     const wrapper = document.createElement('div');
@@ -18,106 +33,37 @@ document.addEventListener('DOMContentLoaded', function() {
     wrapper.appendChild(highlightBlock);
     
     // add line numbers
-    const code = pre.querySelector('code') || pre;
-    const lines = code.textContent.split('\n');
+    addLineNumbers(pre);
     
-    // remove empty last line if it exists
-    if (lines[lines.length - 1] === '') {
-      lines.pop();
-    }
-    
-    // create line numbers container
-    const lineNumbersDiv = document.createElement('div');
-    lineNumbersDiv.className = 'line-numbers';
-    
-    // add a span for each line
-    for (let i = 1; i <= lines.length; i++) {
-      const lineSpan = document.createElement('span');
-      lineSpan.textContent = i;
-      lineNumbersDiv.appendChild(lineSpan);
-    }
-    
-    // insert line numbers
-    pre.style.position = 'relative';
-    pre.appendChild(lineNumbersDiv);
-    
-    // create header with copy button
-    const header = document.createElement('div');
-    header.className = 'code-header';
-    
-    // detect language
-    let language = 'code';
-    const codeElement = pre.querySelector('code');
-    if (codeElement) {
-      const classes = codeElement.className.split(' ');
-      for (let className of classes) {
-        if (className.startsWith('language-')) {
-          language = className.replace('language-', '');
-          break;
-        }
-      }
-    }
-
-    // also check data-lang attribute
-    if (pre.getAttribute('data-lang')) {
-      language = pre.getAttribute('data-lang');
-    }
-    
-    const languageLabel = document.createElement('span');
-    languageLabel.className = 'code-language';
-    languageLabel.textContent = language;
-    
-    const copyButton = document.createElement('button');
-    copyButton.className = 'copy-button';
-    copyButton.textContent = 'Copy';
-    
-    header.appendChild(languageLabel);
-    header.appendChild(copyButton);
-    wrapper.insertBefore(header, highlightBlock);
-    
-    // copy functionality
-    copyButton.addEventListener('click', function() {
-      // get the actual code content
-      const code = pre.querySelector('code');
-      let textToCopy = '';
-      
-      if (code) {
-        textToCopy = code.textContent;
-      } else {
-        textToCopy = pre.textContent;
-      }
-      
-      navigator.clipboard.writeText(textToCopy).then(function() {
-        copyButton.textContent = 'Copied!';
-        copyButton.classList.add('copied');
-        
-        setTimeout(function() {
-          copyButton.textContent = 'Copy';
-          copyButton.classList.remove('copied');
-        }, 2000);
-      }).catch(function(err) {
-        console.error('Failed to copy: ', err);
-        copyButton.textContent = 'Failed';
-      });
-    });
+    // add header with copy button
+    addCodeHeader(wrapper, highlightBlock);
   });
   
-  // also handle standalone pre elements without highlight div
+  // also handle standalone pre elements
   const standalonePres = document.querySelectorAll('pre:not(.highlight pre):not(.code-block-wrapper pre)');
   
   standalonePres.forEach(function(pre) {
-    // skip if already wrapped
-    if (pre.parentElement.classList.contains('code-block-wrapper')) return;
+    if (pre.parentElement && pre.parentElement.classList.contains('code-block-wrapper')) {
+      return;
+    }
     
-    // create wrapper div
+    // create wrapper
     const wrapper = document.createElement('div');
     wrapper.className = 'code-block-wrapper';
     pre.parentNode.insertBefore(wrapper, pre);
     wrapper.appendChild(pre);
     
     // add line numbers
+    addLineNumbers(pre);
+    
+    // add header
+    addCodeHeader(wrapper, null);
+  });
+  
+  function addLineNumbers(pre) {
     const code = pre.querySelector('code') || pre;
-    const lines = code.textContent.split('\n');
+    const codeText = code.textContent || '';
+    const lines = codeText.split('\n');
     
     // remove empty last line if it exists
     if (lines[lines.length - 1] === '') {
@@ -137,27 +83,75 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // insert line numbers
     pre.style.position = 'relative';
-    pre.appendChild(lineNumbersDiv);
-    
-    // create header with copy button
+    pre.insertBefore(lineNumbersDiv, pre.firstChild);
+  }
+  
+  function addCodeHeader(wrapper, highlightBlock) {
+    // create header
     const header = document.createElement('div');
     header.className = 'code-header';
     
+    // detect language
+    let language = 'code';
+    if (highlightBlock) {
+      const codeElement = highlightBlock.querySelector('code');
+      if (codeElement) {
+        const classes = codeElement.className.split(' ');
+        for (let className of classes) {
+          if (className.startsWith('language-')) {
+            language = className.replace('language-', '');
+            break;
+          }
+        }
+      }
+      
+      const pre = highlightBlock.querySelector('pre');
+      if (pre && pre.getAttribute('data-lang')) {
+        language = pre.getAttribute('data-lang');
+      }
+    }
+    
+    // create language label
     const languageLabel = document.createElement('span');
     languageLabel.className = 'code-language';
-    languageLabel.textContent = 'code';
+    languageLabel.textContent = language;
     
+    // create copy button
     const copyButton = document.createElement('button');
     copyButton.className = 'copy-button';
     copyButton.textContent = 'Copy';
     
     header.appendChild(languageLabel);
     header.appendChild(copyButton);
-    wrapper.insertBefore(header, pre);
     
-    // copy functionality
+    // insert header before the code block
+    wrapper.insertBefore(header, wrapper.firstChild);
+    
+    // add copy functionality
     copyButton.addEventListener('click', function() {
-      const textToCopy = pre.textContent;
+      const pre = wrapper.querySelector('pre');
+      const code = pre.querySelector('code') || pre;
+      
+      // get text without line numbers
+      let textToCopy = '';
+      if (code.classList.contains('rouge-code')) {
+        // rouge table format
+        textToCopy = code.textContent;
+      } else {
+        // regular format - exclude line numbers
+        const lineNumbers = pre.querySelector('.line-numbers');
+        if (lineNumbers) {
+          // temporarily remove line numbers to get clean text
+          const tempCode = code.cloneNode(true);
+          const tempLineNumbers = tempCode.querySelector('.line-numbers');
+          if (tempLineNumbers) {
+            tempLineNumbers.remove();
+          }
+          textToCopy = tempCode.textContent;
+        } else {
+          textToCopy = code.textContent;
+        }
+      }
       
       navigator.clipboard.writeText(textToCopy).then(function() {
         copyButton.textContent = 'Copied!';
@@ -172,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
         copyButton.textContent = 'Failed';
       });
     });
-  });
+  }
   
   // smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {

@@ -551,41 +551,16 @@ a:hover {
   transform: translateY(-2px);
 }
 
-/* code blocks */
-pre {
-  background: #282c34;
-  color: #abb2bf;
-  border-radius: 0.5rem;
-  padding: var(--space-lg);
-  overflow-x: auto;
-  margin-bottom: var(--space-lg);
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  line-height: 1.7;
-}
-
-code {
-  font-family: var(--font-mono);
-  font-size: 0.875em;
-}
-
-/* inline code */
-p code, li code {
-  background: var(--bg-tertiary);
-  color: #d63384;
-  padding: 0.125rem 0.375rem;
-  border-radius: 0.25rem;
-  font-weight: 500;
-}
-
-/* code block wrapper from main.js */
+/* code blocks  wrapper*/
 .code-block-wrapper {
   margin: var(--space-xl) 0;
   border-radius: 0.75rem;
   overflow: hidden;
   box-shadow: var(--shadow-md);
+  background: #282c34;  /* Dark background for the entire block */
 }
 
+/* code header */
 .code-header {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   padding: var(--space-sm) var(--space-md);
@@ -622,6 +597,154 @@ p code, li code {
 .copy-button.copied {
   background: var(--secondary);
   border-color: var(--secondary);
+}
+
+/* pre and code elements */
+.code-block-wrapper pre {
+  margin: 0;
+  padding: var(--space-lg);
+  padding-left: 60px; /* Space for line numbers */
+  background: #282c34;
+  border: none;
+  border-radius: 0;
+  overflow-x: auto;
+  position: relative;
+}
+
+/* standalone pre blocks (without wrapper) */
+pre {
+  background: #282c34;
+  color: #abb2bf;
+  border-radius: 0.5rem;
+  padding: var(--space-lg);
+  overflow-x: auto;
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  position: relative;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* line numbers */
+.line-numbers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 45px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-lg) 5px;
+  text-align: right;
+  user-select: none;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #5c6370;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.line-numbers span {
+  display: block;
+  height: 1.5em;
+  line-height: 1.5;
+}
+
+/* ensure consistent line height */
+.code-block-wrapper pre code,
+pre code {
+  display: block;
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+
+/* remove any highlight div margins */
+.code-block-wrapper .highlight {
+  margin: 0;
+  background: none;
+}
+
+.highlight pre {
+  margin: 0;
+}
+
+/* for wrapped code, ensure it doesn't go under line numbers */
+.code-block-wrapper pre {
+  white-space: pre;
+  word-wrap: normal;
+  overflow-x: auto;
+}
+
+/* inline code */
+p code, 
+li code {
+  background: var(--bg-tertiary);
+  color: #d63384;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  font-size: 0.875em;
+}
+
+/* fix for Jekyll's rouge syntax highlighter table layout */
+.highlight table.rouge-table {
+  margin: 0;
+  border: none;
+  width: 100%;
+  background: transparent;
+}
+
+.highlight table.rouge-table td {
+  padding: 0;
+  border: none;
+  vertical-align: top;
+}
+
+.highlight table.rouge-table td.rouge-gutter {
+  width: 45px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: right;
+  padding: var(--space-lg) 5px;
+  user-select: none;
+}
+
+.highlight table.rouge-table td.rouge-gutter pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: #5c6370;
+  border: none;
+}
+
+.highlight table.rouge-table td.rouge-code {
+  padding: var(--space-lg);
+  padding-left: 15px;
+}
+
+.highlight table.rouge-table td.rouge-code pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+/* ensure the code and line numbers align */
+.highlight table.rouge-table pre,
+.line-numbers,
+.code-block-wrapper pre code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 /* responsive design */
@@ -672,6 +795,21 @@ p code, li code {
   
   .nav-toggle:checked ~ .nav-menu {
     display: flex;
+  }
+
+  /* code blocks */
+  .code-block-wrapper pre,
+  pre {
+    font-size: 0.75rem;
+    padding: var(--space-md);
+    padding-left: 50px;
+  }
+  
+  .line-numbers,
+  .highlight table.rouge-table td.rouge-gutter {
+    width: 35px;
+    padding: var(--space-md) 3px;
+    font-size: 0.75rem;
   }
   
   /* hero actions */

@@ -27,12 +27,6 @@
   line-height: 1.5;
 }
 
-/* code blocks with line numbers need proper padding */
-.code-block-wrapper pre.has-line-numbers {
-  padding-left: 55px !important;
-  position: relative;
-}
-
 /* table styles */
 table {
   border-collapse: collapse;
