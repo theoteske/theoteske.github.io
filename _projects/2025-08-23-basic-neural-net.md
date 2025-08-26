@@ -4,6 +4,7 @@ title: "Neural Network Implementation from Scratch"
 description: "A pure NumPy implementation of a deep neural network with backpropagation"
 date: 2025-08-24
 category: ml
+featured: true
 tech: [Python, NumPy, Matplotlib, Jupyter]
 github: https://github.com/theoteske/basic-neural-net
 demo: 
