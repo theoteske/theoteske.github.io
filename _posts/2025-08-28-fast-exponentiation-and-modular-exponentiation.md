@@ -72,6 +72,7 @@ $$
 This latter formula works as a neat summary of the fast exponentiation algorithm. At iteration $i$, the variable `base` holds $x^{2^i}$. If $b_i = 1$ (the exponent's $i$th bit is 1), the algorithm multiplies this into `result`. If $b_i = 0$, the algorithm skips this multiplication. In both cases, it squares `base` to move from $x^{2^i}$ to $x^{2^{i+1}}$ for the next iteration.
 
 To make this process more clear, consider the example when we want to compute $3^{13}$, so $x = 3$ and $n = 13$. When we write $n$ in binary, we are expressing it as a sum of powers of $2$, so $13$ is represented in binary as $1101_2$:
+
 $$
 13 = 8 + 4 + 1 = 2^3 + 2^2 + 2^0.
 $$
