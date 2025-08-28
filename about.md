@@ -36,12 +36,9 @@ permalink: /about/
 
 {{ site.data.bio.description }}
 
-I am currently pursuing my M.S. in Computer Science at the University of Minnesota, where I focus on distributed systems and machine learning. Previously, I completed my B.S. in Applied Mathematics at UCLA before working as a Generative AI Engineer with Reality AI.
+Previously, I completed my B.S. in Applied Mathematics at UCLA before working as a Generative AI Engineer with Reality AI.
 
 ## Education
-
-### M.S. in Computer Science
-**University of Minnesota** | *Expected 2027*
 
 ### B.S. in Applied Mathematics  
 **UCLA** | *2024*
