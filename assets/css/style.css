@@ -446,7 +446,7 @@ a:hover {
 }
 
 .project-image {
-  height: 200px;
+  height: 250px;
   background: var(--bg-tertiary);
   overflow: hidden;
 }
@@ -454,7 +454,8 @@ a:hover {
 .project-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* 'contain' to show whole image, 'cover' to crop */
+  object-position: center center;
   transition: transform var(--transition-slow);
 }
 
@@ -675,6 +676,16 @@ code {
   margin: 0;
 }
 
+/* disable font ligatures in code blocks */
+code, 
+pre, 
+.highlight,
+.code-block-wrapper {
+  font-variant-ligatures: none !important;
+  -webkit-font-variant-ligatures: none !important;
+  text-rendering: optimizeSpeed !important;
+}
+
 /* inline code */
 p code, 
 li code {
@@ -684,6 +695,77 @@ li code {
   border-radius: 0.25rem;
   font-weight: 500;
   font-size: 0.875em;
+}
+
+/* citations */
+.citation {
+  display: inline-block;
+  vertical-align: super;
+  font-size: 0.75rem;
+  line-height: 0;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 1px;
+}
+
+.citation:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* bibliography/references section */
+.references {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 2px solid var(--border);
+}
+
+.references h2 {
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+}
+
+.reference-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: reference;
+}
+
+.reference-list li {
+  counter-increment: reference;
+  margin-bottom: var(--space-md);
+  padding-left: 2rem;
+  position: relative;
+}
+
+.reference-list li::before {
+  content: "[" counter(reference) "]";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* blockquote for citations */
+blockquote.citation-quote {
+  border-left: 4px solid var(--primary);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+  background: var(--bg-secondary);
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+blockquote.citation-quote footer {
+  margin-top: var(--space-sm);
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+  font-style: normal;
+}
+
+blockquote.citation-quote footer::before {
+  content: "— ";
 }
 
 /* responsive design */
