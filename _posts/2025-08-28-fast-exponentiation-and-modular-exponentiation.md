@@ -92,7 +92,7 @@ $$
 (a\cdot b) \text{ mod } m = (a \text{ mod } m) \cdot (b \text{ mod } m) \text{ mod } m,
 $$
 
-for non-negative integer $a, b$ and positive integers $m$.
+for non-negative integers $a, b$ and positive integer $m$.
 
 Below is an example of modular exponentation implemented in C++:
 ```cpp

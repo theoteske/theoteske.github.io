@@ -87,10 +87,7 @@ I am currently pursuing my M.S. in Computer Science at the University of Minneso
 
 ## Research Interests
 
-My current research interests are focused on improving the efficiency of distributed machine learning systems. I'm particularly interested in:
-
-- **Consensus Algorithms**: Exploring Byzantine fault-tolerant consensus mechanisms for distributed ML training
-- **Federated Learning**: Developing privacy-preserving techniques for collaborative model training
+My current research interests are focused on improving the efficiency of distributed machine learning systems. I'm particularly interested in exploring Byzantine fault-tolerant consensus mechanisms for distributed ML training and developing privacy-preserving techniques for collaborative model training through federated learning.
 
 ## Projects
 
