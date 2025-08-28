@@ -16,6 +16,7 @@ We give an exposition of both the fast exponentiation and modular exponentiation
 Consider the following problem: given some integer base $x$ and some non-negative integer exponent $n$, efficiently compute the value of $x^n$, or $x$ raised to the power of $n$. Of course, the brute force solution involves $n$ multiplications by $x$, which will have $O(n)$ runtime efficiency. However, we can do better.
 
 The core insight is that we can repeatedly halve the exponent rather than multiplying the base $n$ times, leading to logarithmic time complexity. We can summarize the **fast exponentiation** algorithm, also known as the method of **repeated squaring**, with the following recursion<sup>[[1]](#ref1)</sup>:
+
 $$
 x^n = 
 \begin{cases}
@@ -48,16 +49,19 @@ int power(int base, int exp) {
 ```
 
 In effect, we're processing the binary representation of $n$ bit by bit, from least significant (rightmost) to most significant (leftmost). We can write any non-negative integer $n$ in binary by expressing it as a sum of powers of $2$:
+
 $$
 n = b_0\cdot 2^0 + b_1\cdot 2^1 + b_2\cdot 2^2 + \dots + b_k\cdot 2^k,
 $$
 
 where each $b_i \in \{ 0, 1 \}$ is the $i$th binary digit of $n$. For example, 
+
 $$
 27 = 1\cdot 2^0+1\cdot 2^1+0\cdot 2^2+1\cdot 2^3+1\cdot 2^4 = 11011_2,
 $$
 
 where the subscript-$2$ notation denotes a binary representation. With this in mind, we can write
+
 $$
 \begin{align*}
 x^n &= x^{b_02^0 + b_12^1 + b_22^2 + \dots + b_k2^k} \\
@@ -88,6 +92,7 @@ The final result we end up with is $243 \cdot 6561 = 1594323$.
 We can extend the above approach to instead raise one number to a power modulo another number, which is known as **modular exponentiation**. Formally, given a non-negative integer base $x$, a non-negative integer exponent $n$ and a positive integer modulus $m$, we want to efficiently compute the value $x^n \text{ mod } m$. Modular exponentation is crucial in many number-theoretic computations, including in primality-testing and in the RSA (Rivest–Shamir–Adleman) cryptosystem.
 
 Practically, efficient modular exponentiation involves the same algorithm as fast exponentiation, but with modulo operations added at each step. Note that these modulo operations can safely be applied without threatening the correctness of the result because the modulo operation is distributive over multiplication, meaning that
+
 $$
 (a\cdot b) \text{ mod } m = (a \text{ mod } m) \cdot (b \text{ mod } m) \text{ mod } m,
 $$
