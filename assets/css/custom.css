@@ -440,7 +440,6 @@ mjx-container:not([display="true"]) {
   border-radius: 1rem;
   font-size: 0.75rem;
   font-weight: 500;
-  text-transform: lowercase;
   cursor: default;
 }
 

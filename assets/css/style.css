@@ -122,6 +122,12 @@ a:hover {
   color: var(--primary-dark);
 }
 
+/* lists */
+ul, ol {
+  padding-left: 2rem;
+  margin-left: 0;
+}
+
 /* layout components */
 .wrapper {
   max-width: var(--max-width);
@@ -509,7 +515,6 @@ a:hover {
   border-radius: 0.375rem;
   font-size: 0.75rem;
   font-weight: 500;
-  text-transform: uppercase;
   letter-spacing: 0.025em;
 }
 
