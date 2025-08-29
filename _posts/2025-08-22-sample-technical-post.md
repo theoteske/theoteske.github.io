@@ -2,8 +2,7 @@
 layout: post
 title: "Sample Technical Post Demonstrating Math and Code"
 date: 2025-08-22
-categories: [tutorial, demo]
-tags: [math, latex, code, markdown]
+tags: [tutorial, latex, python, javascript, markdown]
 author: Theo Teske
 toc: true
 math: true

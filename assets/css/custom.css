@@ -193,36 +193,6 @@ mjx-container:not([display="true"]) {
   transform: translateY(-2px);
 }
 
-/* category and tag pages */
-.category-grid,
-.tag-cloud {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  margin-bottom: var(--space-2xl);
-}
-
-.category-card,
-.tag-cloud-item {
-  padding: var(--space-sm) var(--space-lg);
-  background: var(--bg-secondary);
-  border-radius: 2rem;
-  border: 2px solid var(--border);
-  transition: all var(--transition);
-  text-decoration: none;
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-.category-card:hover,
-.tag-cloud-item:hover {
-  border-color: var(--primary);
-  background: var(--primary);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
 .post-count {
   display: inline-block;
   margin-left: var(--space-xs);
@@ -419,6 +389,75 @@ mjx-container:not([display="true"]) {
   border-radius: 0.375rem;
   font-size: 0.875rem;
   color: var(--text-secondary);
+}
+
+/* blog tag filtering system */
+.blog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 0.75rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.5rem;
+  background: var(--bg-primary);
+  border: 2px solid var(--border);
+  border-radius: 2rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+/* style tags in blog posts to not look like links */
+.post-meta .post-tags {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.post-meta .post-tags span.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  cursor: default;
+}
+
+.post-meta .post-tags span.tag:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* hidden class for filtering */
+.post-preview.hidden {
+  display: none;
+}
+
+/* remove link styling from tags */
+.post-tags a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* mobile-specific overrides */

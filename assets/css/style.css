@@ -446,17 +446,22 @@ a:hover {
 }
 
 .project-image {
-  height: 250px;
-  background: var(--bg-tertiary);
+  margin: 2rem 0;
+  border-radius: 0.75rem;
   overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--bg-tertiary);
+  height: auto;
+  max-height: 500px;
 }
 
 .project-image img {
   width: 100%;
-  height: 100%;
-  object-fit: contain; /* 'contain' to show whole image, 'cover' to crop */
-  object-position: center center;
-  transition: transform var(--transition-slow);
+  height: auto;
+  display: block;
+  object-fit: contain;
+  max-height: 500px;
+  background: var(--bg-tertiary);
 }
 
 .project-card:hover .project-image img {

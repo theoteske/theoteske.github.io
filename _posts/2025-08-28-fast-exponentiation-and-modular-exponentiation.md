@@ -2,8 +2,7 @@
 layout: post
 title: "Fast Exponentiation and Modular Exponentiation"
 date: 2025-08-28
-categories: [tutorial, demo]
-tags: [modular exponentiation, leetcode, number theory]
+tags: [modular exponentiation, leetcode, number theory, c++, latex]
 author: Theo Teske
 toc: true
 math: true
