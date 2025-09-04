@@ -36,7 +36,7 @@ permalink: /about/
 
 {{ site.data.bio.description }}
 
-Previously, I completed my B.S. in Applied Mathematics at UCLA before working as a Generative AI Engineer with Reality AI.
+Previously, I completed my B.S. in Applied Mathematics at UCLA and now work as a Generative AI Engineer with Reality AI.
 
 ## Education
 
