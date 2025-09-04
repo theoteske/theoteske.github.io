@@ -52,6 +52,7 @@ Previously, I completed my B.S. in Applied Mathematics at UCLA and now work as a
       <span class="skill-tag">C/C++</span>
       <span class="skill-tag">Python</span>
       <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">TypeScript</span>
       <span class="skill-tag">SQL</span>
     </div>
   </div>
