@@ -2,14 +2,14 @@ name: "Theo Teske"
 title: "Generative AI Engineer"
 university: "Reality AI"
 description: "Building scalable solutions at the cutting-edge of machine learning research and exploring algorithmic problem solving."
-resume: "/assets/files/resume.pdf"
+resume: "/assets/files/cv.pdf"
 email: "theo.teske@gmail.com"
 github: "theoteske"
 linkedin: "theo-teske-6b28782a7"
 research_interests:
-  - "Distributed Systems"
-  - "Machine Learning"
-  - "Algorithm Design"
+  - "Sublinear Algorithms"
+  - "Data Mining"
+  - "Machine Learning
 skills:
   languages: ["Python", "C/C++", "JavaScript", "Java"]
   frameworks: ["TensorFlow", "PyTorch", "React", "Node.js"]

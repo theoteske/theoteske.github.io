@@ -84,7 +84,7 @@ Previously, I completed my B.S. in Applied Mathematics at UCLA and now work as a
 
 ## Research Interests
 
-My current research interests are focused on improving the efficiency of distributed machine learning systems. I'm particularly interested in exploring Byzantine fault-tolerant consensus mechanisms for distributed ML training and developing privacy-preserving techniques for collaborative model training through federated learning.
+My current research interests are focused on sublinear graph algorithms and their applications to real-world network analysis. I am broadly interested in theoretical computer science and data mining, with a special interest in graph algorithms.
 
 ## Projects
 
